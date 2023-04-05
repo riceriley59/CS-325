@@ -1,14 +1,12 @@
-def num_inversions(arr: list) -> int:
-    inversions = 0
-
+def mergesort(arr: list):
     if(len(arr) > 1):
         middle = len(arr) // 2
 
         left = arr[:middle]
         right = arr[middle:]
 
-        inversions += num_inversions(left)
-        inversions += num_inversions(right)
+        mergesort(left)
+        mergesort(right)
 
         i, j, k = 0, 0, 0
 
@@ -19,7 +17,6 @@ def num_inversions(arr: list) -> int:
             else:
                 arr[k] = right[j]
                 j += 1
-                inversions += (middle - i)
             
             k += 1
 
@@ -32,5 +29,3 @@ def num_inversions(arr: list) -> int:
             arr[k] = right[j]
             j += 1
             k += 1
-
-    return inversions

@@ -1,0 +1,40 @@
+Time complexities for Quick Sort:
+    Best Case: O(nlog(n))
+    Worst Case: O(n^2)
+    Average Case: O(nlog(n))
+
+Best Case for Quick Sort explained:
+    The best case is where the pivot will be selected in the middle
+    resulting in their being T(n/2) recursive calls with each recursive
+    call having a O(n) operation which comes down to a nlog(n) runtime.
+
+Worst Case for Quick Sort Explained:
+    The worst case is where the array is already sorted in reverse or normal
+    order and the pivot always being and index 0 of the array. This results
+    in their being T(n-1) recursive calls as the pivot will essentially have 
+    to go through the whole array with each recursive call having a O(n)
+    operation which results in O(n) * O(n) which is O(n^2)
+
+Average Case for Quick Sort Explained:
+    The average case is a really hard proof but has been proven to be O(nlog(n))
+    when the pivot is picked at random every time.
+
+The time complexities for binary search trees:
+    Sorted: the time complexity for sorted function is O(n) since you will have to
+    go through every node in-order and then concatenate that to a new sorted list and 
+    return that.
+    Search: The time complexity for the search function is O(log(n)) because you will 
+    have to go through at most the height of the tree to find a node which can span in the
+    best case of log(n) to n it just depends on whether the tree is balanced or not.
+    Insert: The time complexity of insert is the same as the complexity of the search function
+    as it will depend on the height of the tree which can span from log(n) if the tree is 
+    well balanced to O(n) if the tree is unbalanced.
+
+Debrief:
+    1. I spent about an hour and a half on this assignment
+    2. This is an easy assignment except for the buggy qsort problem which I would rank
+        intermediate
+    3. I worked on it completely alone
+    4. I would say 90%
+    5. None
+    
