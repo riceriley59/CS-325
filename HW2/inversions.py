@@ -18,7 +18,3 @@ def _num_inversions(arr: list) -> int:
     return (leftA + [pivot] + rightA, lnum + rnum + num)
 
 num_inversions = lambda arr: _num_inversions(arr)[1]
-
-if __name__ == "__main__":
-    print(num_inversions([5, 4, 3, 2, 1]))
-    print(num_inversions([2, 9, 1, 4, 1, 7, 7, 7, 10, 6]))
