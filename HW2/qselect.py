@@ -1,30 +1,22 @@
-import random
-import math
+from random import randint
 
-#returns kth lowest number in given array using quickselect
 def qselect(k: int, arr: list) -> int:
-    value = _kthSmallest(k, arr, 0, len(arr) - 1)
-    if value != math.inf: return value
-    else: return ValueError
+    if len(arr) == 1:
+        return arr[0]
 
+    pivot = arr[randint(0, len(arr) - 1)]
 
-def _kthSmallest(k: int, arr: list, start: int, end: int):
-    if(k > 0 and k <= (end - start) + 1):
-        narray = arr[start:end]
-        pivot = arr[random.randint(start, end)]
+    left = [x for x in arr if x < pivot]
+    right = [x for x in arr if x > pivot]
 
-        left = [x for x in narray if x < pivot]
-        right = [x for x in narray if x > pivot]
+    pivotIndex = len(left)
 
-        pivotIndex = start + len(left)
-
-        if(pivotIndex == k): return arr[pivotIndex]
-        if(pivotIndex < k): return _kthSmallest(k, arr, pivotIndex, end)
-        else: return _kthSmallest(k, arr, start, pivotIndex)
-
-    return math.inf
-
-        
+    if pivotIndex == (k - 1):
+        return pivot
+    elif pivotIndex > (k - 1):
+        return qselect(k, left)
+    else:
+        return qselect(k - (len(left) + 1), right)
 
 if __name__ == '__main__':
     print(qselect(2, [3, 10, 4, 7, 19]))
