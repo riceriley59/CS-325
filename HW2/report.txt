@@ -1,0 +1,20 @@
+qselect:
+    Worst Case: The worst case time complexity would be O(n^2) and this would be when the quickselect
+    uses the first index as the pivot every time and the array is sorted in which the funciton would 
+    run n times with an O(n) operation making it n^2
+
+    Best Case: The best case is where the pivot is always selected to be the middle of all the numbers 
+    so the array is split by half everytime making the function fun log(n) times with an O(n) operation
+    making the time complexity O(nlog(n))
+
+    Average Case: The average case, when using a randomized pivot, is O(nlog(n)) making this implementation
+    pretty efficient.
+
+
+Debrief:
+
+    1. I spent about an hour and a half on this assignment
+    2. This assignment I would rate as moderate
+    3. I worked on the assignment mostly alone
+    4. I feel like I deeply understand the material (100%).
+    5. None
