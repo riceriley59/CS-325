@@ -1,5 +1,5 @@
-#number of inversions
-def inversions(arr: list) -> int:
+#number of num_inversions
+def num_inversions(arr: list) -> int:
     if arr == []: return ([], 0)
     
     pivot = arr[0]
@@ -12,7 +12,10 @@ def inversions(arr: list) -> int:
             left.append(x)
             num += len(right) + 1
     
-    leftA, lnum = inversions(left)
-    rightA, rnum = inversions(right)
+    leftA, lnum = num_inversions(left)
+    rightA, rnum = num_inversions(right)
 
     return (leftA + [pivot] + rightA, lnum + rnum + num)
+
+if __name__ == "__main__":
+    print(num_inversions([5, 4, 3, 2, 1]))
