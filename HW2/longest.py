@@ -10,7 +10,7 @@ def _max_depth(tree: list) -> int:
 
 longest = lambda tree: _max_depth(tree)[0]
 
-""" if __name__ == "__main__":
+if __name__ == "__main__":
     print(longest([[], 1, []]))
     print(longest([[[], 1, []], 2, [[], 3, []]]))
-    print(longest([[[[], 1, []], 2, [[], 3, []]], 4, [[[], 5, []], 6, [[], 7, [[], 9, []]]]])) """
+    print(longest([[[[], 1, []], 2, [[], 3, []]], 4, [[[], 5, []], 6, [[], 7, [[], 9, []]]]]))
