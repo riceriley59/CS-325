@@ -1,0 +1,52 @@
+1. If the input array wasn't sorted then you could use quickselect.
+Although this would have a runtime complexity O(n + k).
+
+3. The time complexity for the k-way merge sort would be O(nlogk n) and
+has a recurrence relation T(n) = kT(n/k) + O(nlogk)
+
+4. 
+(a) Unsorted array:
+
+    Push: O(1) (amortized)
+    Pop-min: O(n)
+    Peek: O(n)
+    Heapify: O(n)
+
+(b) Sorted array (highest priority first):
+
+    Push: O(n)
+    Pop-min: O(1)
+    Peek: O(1)
+    Heapify: O(n)
+
+(c) Reversely sorted array (lowest priority first):
+
+    Push: O(1) (amortized)
+    Pop-min: O(1)
+    Peek: O(1)
+    Heapify: O(n)
+
+(d) Linked list:
+
+    Push: O(1)
+    Pop-min: O(n)
+    Peek: O(n)
+    Heapify: O(n)
+
+(e) Binary heap:
+
+    Push: O(log n)
+    Pop-min: O(log n)
+    Peek: O(1)
+    Heapify: O(n)
+
+Debrief:
+    0. Riley Rice
+    1. 2 hours
+    2. moderate
+    3. I worked on it mostly alone
+    4. 90%
+    5. I liked seeing the recurrence relations
+    6. I didn't like the coding examples that were given
+    7. I felt like I did pretty good next time I will try to pay more 
+    attention to the little details, which is what got me this quiz.
