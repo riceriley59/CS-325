@@ -2,7 +2,7 @@
 Although this would have a runtime complexity O(n + k).
 
 3. The time complexity for the k-way merge sort would be O(nlogk n) and
-has a recurrence relation T(n) = kT(n/k) + O(nlogk)
+has a recurrence relation of T(n) = kT(n/k) + O(nlogk).
 
 4. 
 (a) Unsorted array:
