@@ -15,4 +15,4 @@ def find(arr: list) -> list:
 
 
 if __name__ == "__main__":
-    print(find([1, 4, 2, 3, 5]))
+    print(find([1, 0, 4, 2, 3, 5]))
