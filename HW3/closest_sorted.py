@@ -16,7 +16,7 @@ def find(arr: list, x: float, k: int) -> list:
         else:
             right += 1
     
-    return arr[left+1:right]
+    return arr[left + 1:right]
 
 if __name__ == '__main__':
     print(find([1,2,3,4,4,7], 5.2, 2))
