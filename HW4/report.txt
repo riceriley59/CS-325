@@ -1,0 +1,38 @@
+0. Building heap:
+    Building heap using heappush: This has a time complexity of O(nlog(n)) because
+    you go through every element in the list and push it into the heap your building.
+    This results in a recursion tree that has a height of n with a logn operation for
+    each node.
+    Building heap using heapify: This has a time complexity of O(n) as you go to the
+    last non-leaf node and then go backwards through all the parent nodes switching 
+    them if needed. Since there are only n/2 parent nodes and you only perform operations
+    on parent nodes your complexity becomes O(n/2) which simplifies to O(n).
+
+1. Time complexities of nbest:
+    nbesta: O(n^2 + n^2log(n) + n) => O(n^2log(n))
+    nbestb: O(n^2 + n^2 + n) => O(n^2)
+    nbestc: O(2 * nlog(n) + nlog(n)) => O(nlog(n))
+
+2. Time complexity of ksmallest:
+    Implementing the ksmallest using a max heap results in a time complexity of 
+    O(nlog(k)) as we go through n elements in the datastream and only heapreplace 
+    if there is a smaller number which has a time complexity of log(k) this means
+    a recursion tree with a height of n and an operation of log(k) for each node
+    which is nlog(k) at the end we have to sort the heap array which has a complexity
+    klog(k) so our final master equation is O(nlog(k) + klog(k)) which simplifies
+    to O(nlog(k)) as k << n.
+
+3. Time complexity of merge k sorted arrays:
+    This algorithm using a min-heap has a time complexity of O(nlog(k)) as you
+    go through every element in all of the arrays and then rank them or heapreplace
+    if there is a smaller one. It's similiar to ksmallest.
+
+Debrief:
+    0. Riley Rice
+    1. 2 hours
+    2. moderate
+    3. I worked on it mostly alone
+    4. 85%
+    5. I like the homework assignments
+    6. I dislike the lecture as I wish there was more explanation using equations
+    with algorithm analysis.
