@@ -1,10 +1,12 @@
 import heapq
 
-def ksmallest(k, stream):
+def ksmallest(k: int, stream: list) -> list:
     heap = []
+
     for i, x in enumerate(stream):
         if i < k:
-            heapq.heappush(heap, -x)
+            heap.append(-x)
+            if i == k - 1: heapq.heapify(heap)
         else:
             if heap and -x > heap[0]:
                 heapq.heapreplace(heap, -x)
