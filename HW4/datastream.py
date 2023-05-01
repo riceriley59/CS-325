@@ -6,8 +6,9 @@ def ksmallest(k, stream):
         if i < k:
             heapq.heappush(heap, -x)
         else:
-            if -x > heap[0]:
+            if heap and -x > heap[0]:
                 heapq.heapreplace(heap, -x)
+
     return sorted([-x for x in heap])
     
 
