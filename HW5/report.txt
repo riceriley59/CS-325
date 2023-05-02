@@ -1,0 +1,17 @@
+0. Is fibonacci really O(n)?
+
+1. The time complexity of DP solution for MIS:
+
+2. Bsts questions:
+    a. Whats the complexity of this DP solution:
+
+    b. Whats the name of this number series:
+
+Debrief:
+    0.
+    1.
+    2.
+    3.
+    4.
+    5.
+    6.
