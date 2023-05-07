@@ -1,17 +1,34 @@
 0. Is fibonacci really O(n)?
+    Fibonacci is not really O(n) as it grows exponentially. This results 
+    in an exponential runtime of O(2^n) as the recursion tree grows by 
+    that number every call. In order to mitigate this runtime you can 
+    remember the results of past calculations so that you don't have to 
+    do the calculations again. This is called memoization. 
 
 1. The time complexity of DP solution for MIS:
+    The complexity of this algorithm using memoization is O(n) as you
+    only have to calculate n recursive calls and then go through the list
+    once using the back pointers to get the set, this is also only O(n). This
+    results in O(n + n) which is just O(n).
 
 2. Bsts questions:
     a. Whats the complexity of this DP solution:
-
+        The time complexity of this solution using memoization is O(n^2)
+        as you have to calculate n numbers but then you also have to do that
+        n times.
     b. Whats the name of this number series:
+        The name of this number series is the catalan number series.
 
 Debrief:
-    0.
-    1.
-    2.
-    3.
-    4.
-    5.
-    6.
+    0. Riley Rice
+    1. moderate: it was difficult at first but then it got easy once 
+        I understood the patterns used in DP solutions.
+    2. 2 hours
+    3. mostly alone
+    4. 95% could look a little more at the bottom up solutions
+    5. I got a pretty good score on the quiz 2 and I feel like most of my
+        mistakes came from me not double checking my answers which I will 
+        definitely work on doing on the next quiz.
+    6. I really like this class and I find the content super helpful. I really
+        wish we could look more at mathematical ways of understanding algorithms
+        more.
