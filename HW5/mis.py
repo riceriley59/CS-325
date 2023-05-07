@@ -26,6 +26,8 @@ def max_wis(graph: list) -> tuple:
         else:
             ilast -= 1
 
+    result.reverse()
+
     return (msum, result)
 
 #bottom-up solution
@@ -46,6 +48,8 @@ def max_wis2(graph: list) -> tuple:
             ilast -= 2
         else:
             ilast -= 1
+
+    result.reverse()
     
     return (mbest[len(graph) - 1][0], result)
 
