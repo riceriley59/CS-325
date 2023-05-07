@@ -9,9 +9,7 @@ def _bst_helper(n: int, best: dict) -> int:
     best[n] = num; return best[n]
 
 def bsts(n: int) -> int:
-    best = {0: 1}
-
-    return _bst_helper(n, best)
+    best = {0: 1}; return _bst_helper(n, best)
 
 #bottom-up solution
 def bsts2(n: int) -> int:
