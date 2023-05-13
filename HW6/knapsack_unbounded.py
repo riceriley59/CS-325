@@ -1,5 +1,10 @@
 def best(W: int, pairs: list) -> tuple:
-    return (0, 0)
+    best = {0: (0, 0)}
+
+    def fit(w: int, pairs: list) -> int:
+        return 0
+
+    return (fit(W, pairs), 0)
 
 if __name__ == '__main__':
     print(best(3, [(2, 4), (3, 5)]))
