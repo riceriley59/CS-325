@@ -4,9 +4,8 @@ def backpoint(back: dict, W: int, items: int) -> list:
     w, i = W, len(items) - 1
 
     while i >= 0 and w > 0:
-        j = back[(w, i)]
-        result[i] = j
-        w -= j * items[i][0]
+        result[i] = back[(w, i)]
+        w -= back[(w, i)] * items[i][0]
         i -= 1
 
     return result
