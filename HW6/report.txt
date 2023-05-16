@@ -1,7 +1,37 @@
+0.
+a. A greedy solution in the context of unbounded knapsack would be taking an item
+    with the biggest weight as many times possible in order to fill the bag.
+b. A counterexample for why this is incorrect is if one item has a weight of 5
+    but only a value of 2 while another item only has a weight of 3 but a value of 3
+    for a bag of size 9. In this case the greedy algorithm would take and 5 and a 3
+    which would have a value of 5 instead of taking 3 3's and getting a value of 9.
+c. The subproblem for the unbounded would be finding the best value for a bag that is
+    smaller than the given bag.
+d. The recurrence relation for unbounded is best[w] = (i goes 1-n)max(best[w - wi]) + vi
+e. The base case would be best[0] = 0 when we have an empty bag.
+f. The space and time complexity for unbounded would be time: O(n*W) space: O(W)
+
+a. A greedy solution for the bounded knapsack would be to take as many copies as possible
+    of an item with the biggest weight.
+b. A counterexample for the greedy solution is incorrect is if there is a bag with 15 spots
+    available and there is a item with weight 4 and a value 3 with 4 copies and another item
+    with weight 3 and a value of 5 and 5 copies. In the greedy solution you would take 3 copies of the 4 
+    weight item and a single copy of the 3 weight item and you would have a value of 14. Although,
+    that is incorrect the correct solution would be 5 copies of the 3 item with a value of 25.
+c. The subproblem for the bounded knapsack is best[W][i] is the best value of bag w using items 1 - i.
+d. The reccurence relation for the bounded is:
+    best[w][i] = (j goes from 0 to copies at i)max(best[w - ji * wi][i - 1] + (j * vi))
+e. The base case would be either best[0, i] = 0 or best[w, 0] = 0
+f. The space and time complexity for the bounded knapsack is space: O(Wn) and time: O(Wn(prime))
+
+1. The time and space complexity for unbounded knapsack is: space: O(W) and time: O(Wn)
+
+2. The time and space complexity for bounded knapsack is: space: O(nW) and time: O(Wn(prime))
+
 Debrief:
 0. Riley Rice
-1.
-2.
-3.
-4.
-5.
+1. I spent 3 hours on this assignment
+2. I would rate this as difficult
+3. I worked on it alone
+4. 80%
+5. 2 attempts, I tested on my host machine before I sumbitted
