@@ -22,8 +22,8 @@ def longest(n: int, edges: list) -> tuple:
             if indegree[neighbor] == 0:
                 q.append(neighbor)
 
-    longest_paths = defaultdict(int)
-    backpointers = defaultdict(lambda: None)
+    longest_paths = [0] * n
+    backpointers = [None] * n
 
     for node in solution:
         for neighbor in adj_list[node]:
