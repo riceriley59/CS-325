@@ -20,6 +20,8 @@ def longest(n: int, edges: list) -> tuple:
             if deg[neighbor] == 0: 
                 q.append(neighbor)
 
+    if len(solution) != n: return 0
+
     # Perform Viterbi algorithm
     longest_paths = defaultdict(int)  # Initialize longest paths
     path = defaultdict(lambda: None)  # Initialize path
