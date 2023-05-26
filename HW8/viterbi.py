@@ -1,6 +1,8 @@
 from collections import defaultdict
 
 def longest(n: int, edges: list) -> tuple:
+    if not edges: return (0, [])
+
     adj_list, deg, q, solution = defaultdict(list), defaultdict(int), [], []
     for x, y in edges: 
         adj_list[x].append(y)
