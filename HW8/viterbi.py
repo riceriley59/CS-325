@@ -22,7 +22,7 @@ def topsort(n: int, edges: list) -> list:
     else: return None
 
 def longest(n: int, edges: list) -> tuple:
-    top, best, back = topsort(n, edges), defaultdict(int), defaultdict(int)
+    top, best, back = topsort(n, edges), defaultdict(int), defaultdict(lambda : -1)
 
     adj_list = defaultdict(list)
 
@@ -36,10 +36,18 @@ def longest(n: int, edges: list) -> tuple:
                 best[u] = new
                 back[u] = v
 
-    return (best[n - 1], back)
+    path = []
+    for i in range(n - 1):
+        if back[i] == -1: continue
+        path.append(back[i])
+
+    path.append(top[n - 1])
+
+    return (best[n - 1], path)
             
 
 if __name__ == '__main__':
     print(longest(8, [(0,2), (1,2), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6), (5,7)]))
     print(longest(8, [(0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7)]))
+    print(longest(8, [(0,1), (0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7), (6,7)]))
     print(longest(8, [(0,1), (0,2), (1,2), (2,3), (2,4), (4,3), (3,5), (4,5), (5,6), (5,7), (6,7)]))
