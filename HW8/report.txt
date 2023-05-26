@@ -1,0 +1,10 @@
+0. 
+a. undirected, sparse, cyclic
+b. directed, sparese, cylic
+c. undirected, dense, cyclic
+d. directed, sparse, cyclic
+e. undirected, sparse, cyclic
+f. directed, sparse, acyclic
+g. directed, sparse, acyclic
+h. directed, sparse, acyclic
+i. directed, sparse, acyclic

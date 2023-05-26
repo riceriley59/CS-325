@@ -22,29 +22,21 @@ def longest(n: int, edges: list) -> tuple:
             if indegree[neighbor] == 0:
                 q.append(neighbor)
 
-    longest_paths = [0] * n
-    backpointers = [None] * n
+    best, back = defaultdict(int), defaultdict(lambda: None)
 
     for node in solution:
         for neighbor in adj_list[node]:
-            if longest_paths[node] + 1 > longest_paths[neighbor]:
-                longest_paths[neighbor] = longest_paths[node] + 1
-                backpointers[neighbor] = node
+            if best[node] + 1 > best[neighbor]:
+                best[neighbor] = best[node] + 1
+                back[neighbor] = node
 
-    max_length = max(longest_paths)
-    end_nodes = [i for i, length in enumerate(longest_paths) if length == max_length]
-    paths = []
-
-    for end_node in end_nodes:
-        path = []
-        node = end_node
-        while node is not None:
-            path.append(node)
-            node = backpointers[node]
-        path.reverse()
-        paths.append(path)
-
-    return max_length, paths[0]
+    path = []
+    node = best[n - 1]
+    while node is not None:
+        path.append(node)
+        node = back[node]
+        
+    path.reverse(); return (best[n - 1], path)
 
 
 if __name__ == '__main__':
