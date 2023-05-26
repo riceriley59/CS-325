@@ -8,3 +8,29 @@ f. directed, sparse, acyclic
 g. directed, sparse, acyclic
 h. directed, sparse, acyclic
 i. directed, sparse, acyclic
+
+1.  a. I didn't until you had brought it up in class, although once it was brought 
+        up in class it wasn't hard to realize the relation. For example, in the bottom-up
+        bounded knapsack if you look at the problem-subproblem relationships you can 
+        realized that is a DAG graph as once problem depends on another. With it being a 
+        DAG you can topologically order it and you can see the order in which problems must 
+        happen. One thing I found really interesting was how memoization effects this and how
+        it can be related to the top-down topological sort.
+    b. Top-down graphs use a DFS so it will start at the node we want to solve and then traverse
+        it's dependent solutions until it finds a node that isn't dependent on a solution as it's 
+        already solved, base case. It will then solve the problems somewhat of the same order of
+        a bottom up implementation.
+    c. This does suggest there is top-down solution for topsort as the topsort resembles DP solutions
+        as they both run on DAG graphs which have nodes with dependencies.
+
+Debrief:
+    0. Riley Rice
+    1. 2 hours
+    2. moderate
+    3. mostly alone
+    4. 80%
+    5. I did pretty well on the midterm so I felt good about it. Although I definetly could still
+        improve alot as I feel like the questions I missed were easy, I feel like if I saw them again
+        I could solve them which is good. 
+    6. I wish we could go over maybe DFS and BFS with graphs a little because I feel like these topics
+        are super important in the context of DP and graphs.
