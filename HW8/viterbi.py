@@ -1,39 +1,46 @@
 from collections import defaultdict
 
-def longest(n: int, edges: list) -> list:
-    adj_list, output, best, back = defaultdict(list), [], defaultdict(int), defaultdict(lambda : -1)
-    for x, y in edges: adj_list[x].append(y)
+def longest(n: int, edges: list) -> tuple:
+    adj_list, deg, q, solution = defaultdict(list), defaultdict(int), [], []
+    for x, y in edges: 
+        adj_list[x].append(y)
+        deg[y] += 1
 
-    cycle, visited = set(), set()
-    def top(curr: int):
-        if curr in cycle: return False
-        if curr in visited: return True
+    # Perform topological sort
+    for node in range(n):
+        if deg[node] == 0: 
+            q.append(node)
 
-        cycle.add(curr)
-        for u in adj_list[curr]:
-            if not top(u): return False
+    while len(q) > 0:
+        node = q.pop()
+        solution.append(node)
 
-            new = best[u] + 1
-            if new > best[curr]:
-                best[curr] = new
-                back[curr] = u
-        
-        cycle.remove(curr); visited.add(curr)
-        output.append(curr)
-        return True
+        for neighbor in adj_list[node]:
+            deg[neighbor] -= 1
+            if deg[neighbor] == 0: 
+                q.append(neighbor)
 
-    for c in range(n):
-        if not top(c): return None
+    # Perform Viterbi algorithm
+    longest_paths = defaultdict(int)  # Initialize longest paths
+    path = defaultdict(lambda: None)  # Initialize path
 
-    path, index = [], 0
-    while index <= n - 1:
-        if back[index] == -1:
-            path.append(index)
-            break
-        path.append(index)
-        index = back[index]
+    for node in solution:
+        for neighbor in adj_list[node]:
+            if longest_paths[node] + 1 > longest_paths[neighbor]:
+                longest_paths[neighbor] = longest_paths[node] + 1
+                path[neighbor] = node
 
-    return (best[0], path)    
+    max_length = max(longest_paths)
+    max_index = longest_paths[max_length]
+
+    # Construct the path
+    longest_path = [max_index]
+    while path[max_index] is not None:
+        max_index = path[max_index]
+        longest_path.append(max_index)
+    longest_path.reverse()
+
+    return max_length, longest_path
 
 if __name__ == '__main__':
     print(longest(8, [(0,2), (1,2), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6), (5,7)]))
