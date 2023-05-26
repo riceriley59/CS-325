@@ -1,50 +1,39 @@
 from collections import defaultdict
 
-def topsort(n: int, edges: list) -> list:
-    adj_list, deg, q, solution = defaultdict(list), defaultdict(int), [], []
-    for x, y in edges: 
-        adj_list[x].append(y)
-        deg[y] += 1
-
-    for node in range(n):
-        if deg[node] == 0: q.append(node)
-
-    while len(q) > 0:
-        node = q.pop()
-        solution.append(node)
-
-        for neighbor in adj_list[node]:
-            deg[neighbor] -= 1
-            if deg[neighbor] == 0: q.append(neighbor)
-
-
-    if len(solution) == n: return solution
-    else: return None
-
-def longest(n: int, edges: list) -> tuple:
-    top, best, back = topsort(n, edges), defaultdict(int), defaultdict(lambda : -1)
-
-    adj_list = defaultdict(list)
-
+def longest(n: int, edges: list) -> list:
+    adj_list, output, best, back = defaultdict(list), [], defaultdict(int), defaultdict(lambda : -1)
     for x, y in edges: adj_list[x].append(y)
 
-    for v in top:
-        for u in adj_list[v]:
-            new = best[v] + 1
+    cycle, visited = set(), set()
+    def top(curr: int):
+        if curr in cycle: return False
+        if curr in visited: return True
 
-            if new > best[u]:
-                best[u] = new
-                back[u] = v
+        cycle.add(curr)
+        for u in adj_list[curr]:
+            if not top(u): return False
 
-    path, i = [n - 1], n - 1
+            new = best[u] + 1
+            if new > best[curr]:
+                best[curr] = new
+                back[curr] = u
+        
+        cycle.remove(curr); visited.add(curr)
+        output.append(curr)
+        return True
 
-    while i > 0:
-        if back[i] == -1: break
-        path.append(back[i])
-        i = back[i]
+    for c in range(n):
+        if not top(c): return None
 
-    return (best[n - 1], path[::-1])
-            
+    path, index = [], 0
+    while index <= n - 1:
+        if back[index] == -1:
+            path.append(index)
+            break
+        path.append(index)
+        index = back[index]
+
+    return (best[0], path)    
 
 if __name__ == '__main__':
     print(longest(8, [(0,2), (1,2), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6), (5,7)]))
