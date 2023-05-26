@@ -36,14 +36,14 @@ def longest(n: int, edges: list) -> tuple:
                 best[u] = new
                 back[u] = v
 
-    path = []
-    for i in range(n - 1):
-        if back[i] == -1: continue
+    path, i = [n - 1], n - 1
+
+    while i > 0:
+        if back[i] == -1: break
         path.append(back[i])
+        i = back[i]
 
-    path.append(top[n - 1])
-
-    return (best[n - 1], path)
+    return (best[n - 1], path[::-1])
             
 
 if __name__ == '__main__':
