@@ -1,0 +1,20 @@
+1. a. You can still implement Dijkstra's algorithm with python's heapq, although
+    the time complexity would be worse as you would have to do a linear search in the 
+    priority queue in order to find and update the distance values of nodes, which would
+    change the complexity from O((V + E)log(V)) to O(V^2 + E).
+    b. Dijkstra is a greedy algorithm as it makes locally optimal choices to find the shortest
+    path then greedily expands the shortest paths from the source node to the other nodes. Although,
+    dijkstra can be compared to DP problems as it has the same subproblem structure and results are 
+    cached and updated throughout the algorithm.
+    c. This depends on the problem that is being solved and it's characteristics. If you are looking
+    for the shortest path in a graph that doesn't have negative weights then dijkstra will be better.
+    Although, if you are looking for a sequence in which you can take classes then viterbi will be better.
+
+Debrief:
+0. Riley Rice
+1. 1 hour
+2. easy
+3. alone
+4. 100%
+5. 2 attempts
+6. Nope
