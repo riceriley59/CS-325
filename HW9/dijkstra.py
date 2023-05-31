@@ -9,7 +9,7 @@ def shortest(n, edges):
         graph[v].append((u, w))
 
     # Initialize the distance dictionary
-    distances = {node: float('inf') for node in range(n)}
+    distances = defaultdict(lambda : float('inf'))
     distances[0] = 0
 
     # Initialize the priority queue
@@ -17,7 +17,7 @@ def shortest(n, edges):
     pq[0] = 0
 
     # Initialize the parent dictionary
-    parent = {0: None}
+    parent = defaultdict(lambda : None)
 
     while pq:
         u, dist_u = pq.popitem()
