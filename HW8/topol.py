@@ -2,13 +2,12 @@ from collections import defaultdict
 
 #bottom up
 def order(n: int, edges: list) -> list:
-    adj_list, deg, q, solution = defaultdict(list), defaultdict(int), [], []
+    adj_list, deg, solution = defaultdict(list), defaultdict(int), []
     for x, y in edges: 
         adj_list[x].append(y)
         deg[y] += 1
 
-    for node in range(n):
-        if deg[node] == 0: q.append(node)
+    q = [u for u in range(n) if deg[u] == 0]
 
     while len(q) > 0:
         node = q.pop(); solution.append(node)
