@@ -1,8 +1,9 @@
 from heapdict import heapdict
+from collections import defaultdict
 
 def shortest(n, edges):
     # Create an adjacency list to represent the graph
-    graph = [[] for _ in range(n)]
+    graph = defaultdict(list)
     for u, v, w in edges:
         graph[u].append((v, w))
         graph[v].append((u, w))
@@ -41,7 +42,7 @@ def shortest(n, edges):
         path.append(node)
         node = parent[node]
 
-    return distances[n - 1], list(reversed(path))
+    return distances[n - 1], path[::-1]
 
 
 if __name__ == '__main__':
