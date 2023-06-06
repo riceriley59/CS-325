@@ -30,7 +30,7 @@ def best(rna: str) -> tuple:
 
 
 def total(rna: str) -> int: 
-    pass
+    return None
 
 def kbest(rna: str, k: int) -> list[tuple]: 
-    pass
+    return None
