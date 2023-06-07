@@ -24,12 +24,12 @@ def best(rna: str) -> tuple:
             max_structure = f'({structure})'
 
         for k in range(start, end):
-            left_pairs, left_structure = _best(start, k, best, back)
-            right_pairs, right_structure = _best(k + 1, end, best, back)
+            left, left_str = _best(start, k, best, back)
+            right, right_str = _best(k + 1, end, best, back)
 
-            if left_pairs + right_pairs > max_pairs:
-                max_pairs = left_pairs + right_pairs
-                max_structure = left_structure + right_structure
+            if left + right > max_pairs:
+                max_pairs = left + right
+                max_structure = left_str + right_str
 
         best[(start, end)] = max_pairs
         back[(start, end)] = max_structure
