@@ -8,13 +8,6 @@ pairs = {
 }
 
 def best(rna: str) -> tuple:
-    pairs = {
-        'A': {'U'},
-        'G': {'G'},
-        'C': {'G'},
-        'U': {'A', 'G'}
-    }
-
     n = len(rna)
     best, back = defaultdict(int), defaultdict(int)
 
@@ -28,7 +21,7 @@ def best(rna: str) -> tuple:
         if rna[start] in pairs[rna[end]]:
             pairs_count, structure = _best(start + 1, end - 1, best, back)
             max_pairs = pairs_count + 1
-            max_structure = f'({structure})'
+            max_structure = '({struct})'.format(struct = structure)
 
         for k in range(start, end):
             left, left_str = _best(start, k, best, back)
