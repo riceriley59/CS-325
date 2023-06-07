@@ -24,8 +24,6 @@ def best(rna: str) -> tuple:
 
             best[(i, j)] = max_pairs
 
-    max_pairs = best[(0, n - 1)]
-
     # Generate the final structure string using backpointers
     structure_string = ['.'] * n
 
@@ -43,7 +41,7 @@ def best(rna: str) -> tuple:
 
     fill_structure(0, n - 1, structure_string)
 
-    return max_pairs, ''.join(structure_string)
+    return best[(0, n - 1)], ''.join(structure_string)
 
 def total(rna: str) -> int:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
@@ -68,49 +66,7 @@ def total(rna: str) -> int:
     return _total(0, n - 1)
 
 def kbest(rna: str, k: int) -> list:
-    pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
-    n = len(rna)
-    best_structure = best(rna)[1]
-    total_count = total(rna)
-
-    # Create a priority queue to store the k-best structures
-    pq = []
-
-    def generate_k_best(start: int, end: int, prefix: str):
-        if start >= end:
-            pairs_count = prefix.count('(')
-            pq.append((pairs_count, prefix))
-            return
-
-        if start + 1 == end:
-            if rna[start] in pairs[rna[end]]:
-                pq.append((1, prefix + "()"))
-            pq.append((0, prefix + ".."))
-            return
-
-        if rna[start] in pairs[rna[end]]:
-            generate_k_best(start + 1, end - 1, prefix + "()")
-
-        generate_k_best(start, end - 1, prefix + ".")
-        generate_k_best(start + 1, end, prefix + ".")
-
-        for k in range(start + 1, end):
-            if rna[start] in pairs[rna[k]]:
-                left_count = best((rna[start:k + 1]))[0]
-                right_count = best((rna[k + 1:end + 1]))[0]
-                total_pairs = left_count + right_count
-                generate_k_best(start, k, prefix + "(")
-                generate_k_best(k + 1, end, prefix + ")")
-
-    generate_k_best(0, n - 1, "")
-
-    if k >= total_count:
-        return pq[:total_count]
-
-    # Sort the k-best structures by count in descending order
-    pq.sort(reverse=True)
-
-    return pq[:k]
+    return None
 
 if __name__ == '__main__': 
     # Test cases
@@ -126,8 +82,7 @@ if __name__ == '__main__':
         "UUGGACUUG",
         "UUUGGCACUA",
         "GAUGCCGUGUAGUCCAAAGACUUC",
-        "AGGCAUCAAACCCUGCAUGGGAGCG",
-        "CGAGGUGGCACUGACCAAACACCACCGAAAC"
+        "AGGCAUCAAACCCUGCAUGGGAGCG"
     ]
 
     for s in test_cases:

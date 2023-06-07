@@ -1,0 +1,30 @@
+best():
+    Time Complexity: O(n^3)
+    Space Complexity: O(n^2)
+    Explanation: This function has a time complexity of n cubed because you must go through
+        n^2 different substrings by adjusting i and j and for each substring you must go through
+        it's length with k which is O(n) so O(n * n^2) becomes O(n^3). The space complexity is 
+        O(n^2) because we have a dictionary that is 2 dimensional in the sense that their keys
+        are tuples. this will result in n^2 values before it's over in the worst case.
+
+total():
+    Time Complexity: O(n^3)
+    Space Complexity: O(n^2)
+    Explanation: This function has a time complexity of n cubed because you must go through
+        n^2 different substrings, like the best, by adjusting i and j. For each substring you 
+        must also go through its length with k which is O(n) so O(n * n^2) becomes O(n^3).
+        The space complexity is O(n^2) because we have a dictionary that is 2 dimensional in the 
+        sense that their keys are tuples. 
+
+kbest():
+    Time Complextiy: 
+    Space Complexity: 
+    Explanation: 
+
+Debreif:
+    0. Riley Rice
+    1. I took about 4 hours on this assignment
+    2. This assignment was difficult
+    3. I worked on it alone
+    4. 75%
+    5. None
