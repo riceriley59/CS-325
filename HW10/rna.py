@@ -1,7 +1,4 @@
 from collections import defaultdict
-import heapq
-
-pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
 
 def best(rna: str) -> tuple:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
