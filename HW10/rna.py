@@ -61,30 +61,6 @@ def total(rna: str) -> int:
     total_count = _total(0, n - 1)
     return total_count
 
-def kbest(rna: str, k: int) -> list:
-    results = []
-
-    def _kbest(start: int, end: int, k: int, structure: str):
-        if start >= end or k <= 0:
-            pairs, _ = best(structure)
-            results.append((pairs, structure))
-            return
-
-        if rna[start] in pairs[rna[end]]:
-            _kbest(start + 1, end - 1, k - 1, f'({structure})')
-
-        for i in range(start, end):
-            left_pairs, _ = best(structure[:i - start + 1])
-            right_pairs, _ = best(structure[i - start + 1:])
-
-            if left_pairs + right_pairs >= k:
-                _kbest(start, i, k, structure[:i - start + 1])
-                _kbest(i + 1, end, k, structure[i - start + 1:])
-
-    _kbest(0, len(rna), k, '')
-    results.sort(reverse=True)
-    return results[:k]
-
 if __name__ == '__main__': 
     # Testing the provided examples
     print(best("UUCAGGA"))  # (3, '(((.)))')
