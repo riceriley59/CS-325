@@ -8,6 +8,13 @@ pairs = {
 }
 
 def best(rna: str) -> tuple:
+    pairs = {
+        'A': {'U'},
+        'G': {'G'},
+        'C': {'G'},
+        'U': {'A', 'G'}
+    }
+
     n = len(rna)
     best, back = defaultdict(int), defaultdict(int)
 
