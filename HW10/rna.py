@@ -61,7 +61,7 @@ def total(rna: str) -> int:
     total_count = _total(0, n - 1)
     return total_count
 
-def kbest(rna: str, k: int) -> list[tuple]:
+def kbest(rna: str, k: int) -> list:
     results = []
 
     def _kbest(start: int, end: int, k: int, structure: str):
