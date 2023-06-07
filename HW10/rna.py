@@ -3,44 +3,33 @@ from collections import defaultdict
 def best(rna: str) -> tuple:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
     n = len(rna)
-    best, back = defaultdict(int), defaultdict(lambda: -1)
+    best = defaultdict(int)
+    back = defaultdict(lambda: -1)
 
-    def _best(start: int, end: int, best: dict, back: dict) -> tuple:
-        if start >= end:
-            return 0, -1
+    for length in range(1, n):
+        for i in range(n - length):
+            j = i + length
+            max_pairs = best[(i, j)]
 
-        if best[(start, end)] != 0:
-            return best[(start, end)], back[(start, end)]
+            if rna[i] in pairs[rna[j]]:
+                max_pairs = max(max_pairs, best[(i + 1, j - 1)] + 1)
 
-        max_pairs = 0
-        max_k = -1
+            for k in range(i, j):
+                pairs_count = best[(i, k)] + best[(k + 1, j)]
+                if pairs_count > max_pairs:
+                    max_pairs = pairs_count
+                    back[(i, j)] = k
 
-        if rna[start] in pairs[rna[end]]:
-            pairs_count, k = _best(start + 1, end - 1, best, back)
-            if pairs_count + 1 > max_pairs:
-                max_pairs = pairs_count + 1
-                max_k = -1
+            best[(i, j)] = max_pairs
 
-        for k in range(start, end):
-            left, left_k = _best(start, k, best, back)
-            right, right_k = _best(k + 1, end, best, back)
-
-            if left + right > max_pairs:
-                max_pairs = left + right
-                max_k = k
-
-        best[(start, end)] = max_pairs
-        back[(start, end)] = max_k
-
-        return max_pairs, max_k
-
-    max_pairs, max_k = _best(0, n - 1, best, back)
+    max_pairs = best[(0, n - 1)]
 
     # Generate the final structure string using backpointers
     structure_string = ['.'] * n
 
     def fill_structure(start: int, end: int):
-        if start >= end or best[(start, end)] == 0: return
+        if start >= end or best[(start, end)] == 0:
+            return
 
         k = back[(start, end)]
         if k == -1:
@@ -93,7 +82,8 @@ if __name__ == '__main__':
         "UUGGACUUG",
         "UUUGGCACUA",
         "GAUGCCGUGUAGUCCAAAGACUUC",
-        "AGGCAUCAAACCCUGCAUGGGAGCG"
+        "AGGCAUCAAACCCUGCAUGGGAGCG",
+        "CGAGGUGGCACUGACCAAACACCACCGAAAC"
     ]
 
     for s in test_cases:
