@@ -1,39 +1,48 @@
+from collections import defaultdict
+import heapq
+
 def distance1(s, t):
-    m, n = len(s), len(t)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    m, n, dp = len(s), len(t), defaultdict(int)
 
-    for i in range(m + 1):
-        dp[i][0] = i
+    for i in range(m + 1): dp[(i, 0)] = i
 
-    for j in range(n + 1):
-        dp[0][j] = j
+    for j in range(n + 1): dp[(0, j)] = j
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             if s[i - 1] == t[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1]
+                dp[(i, j)] = dp[(i - 1, j - 1)]
             else:
-                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+                dp[(i, j)] = 1 + min(dp[(i - 1, j)], dp[(i, j - 1)], dp[(i - 1, j - 1)])
 
-    return dp[m][n]
-
+    return dp[(m, n)]
 
 def distance2(s, t):
     m, n = len(s), len(t)
-    dp = [[float('inf')] * (n + 1) for _ in range(m + 1)]
-    dp[0][0] = 0
+    heap = [(0, 0, 0)]
+    visited = set()
 
-    for i in range(m + 1):
-        for j in range(n + 1):
-            if i > 0:
-                dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1)
-            if j > 0:
-                dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1)
-            if i > 0 and j > 0:
-                cost = 0 if s[i - 1] == t[j - 1] else 1
-                dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + cost)
+    while heap:
+        dist, i, j = heapq.heappop(heap)
 
-    return dp[m][n]
+        if i == m and j == n: return dist
+
+        if (i, j) in visited: continue
+
+        visited.add((i, j))
+
+        if i < m and j < n:
+            if s[i] == t[j]:
+                heapq.heappush(heap, (dist, i + 1, j + 1))
+            else:
+                heapq.heappush(heap, (dist + 1, i + 1, j + 1))
+
+        if i < m: heapq.heappush(heap, (dist + 1, i + 1, j))
+
+        if j < n: heapq.heappush(heap, (dist + 1, i, j + 1))
+
+    return -1
+
 
 if __name__ == '__main__':
     print(distance1("abcdefh", "abbcdfg"))
