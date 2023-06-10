@@ -1,6 +1,18 @@
 from collections import defaultdict
 import heapq
 
+def fill_structure(start: int, end: int, structure: list, back: dict, best: dict):
+    if start >= end or best[(start, end)] == 0: return
+
+    k = back[(start, end)]
+    if k == -1:
+        structure[start] = '('
+        structure[end] = ')'
+        fill_structure(start + 1, end - 1, structure, back, best)
+    else:
+        fill_structure(start, k, structure, back, best)
+        fill_structure(k + 1, end, structure, back, best)
+
 def best(rna: str) -> tuple:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
     n = len(rna)
@@ -25,19 +37,7 @@ def best(rna: str) -> tuple:
     # Generate the final structure string using backpointers
     structure_string = ['.'] * n
 
-    def fill_structure(start: int, end: int, structure: list):
-        if start >= end or best[(start, end)] == 0: return
-
-        k = back[(start, end)]
-        if k == -1:
-            structure[start] = '('
-            structure[end] = ')'
-            fill_structure(start + 1, end - 1, structure)
-        else:
-            fill_structure(start, k, structure)
-            fill_structure(k + 1, end, structure)
-
-    fill_structure(0, n - 1, structure_string)
+    fill_structure(0, n - 1, structure_string, back, best)
 
     return best[(0, n - 1)], ''.join(structure_string)
 
@@ -65,7 +65,11 @@ def total(rna: str) -> int:
 
 def kbest(rna: str, k: int) -> list:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
-    
+    n = len(rna)
+    best = defaultdict(int)
+    back = defaultdict(lambda: -1)
+    pq = []
+
     
 
     return None
