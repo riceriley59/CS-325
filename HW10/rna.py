@@ -1,4 +1,5 @@
 from collections import defaultdict
+import heapq
 
 def best(rna: str) -> tuple:
     pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
@@ -63,6 +64,10 @@ def total(rna: str) -> int:
     return _total(0, n - 1)
 
 def kbest(rna: str, k: int) -> list:
+    pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
+    
+    
+
     return None
 
 if __name__ == '__main__': 

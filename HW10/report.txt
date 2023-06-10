@@ -17,9 +17,12 @@ total():
         sense that their keys are tuples. 
 
 kbest():
-    Time Complextiy: 
-    Space Complexity: 
-    Explanation: 
+    Time Complextiy: O(n^3)
+    Space Complexity: O(n^2 * k)
+    Explanation: This space complexity will be the same as the other problems although each node 
+        will have a queue of size k which is why it becomes O(n^2 * k). For time complexity it will
+        be the same as the other problems also as you will be doing the same thing except for popping
+        and pushing from queue.
 
 Debreif:
     0. Riley Rice
