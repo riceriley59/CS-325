@@ -64,15 +64,51 @@ def total(rna: str) -> int:
     return _total(0, n - 1)
 
 def kbest(rna: str, k: int) -> list:
-    pairs = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}
-    n = len(rna)
-    best = defaultdict(int)
-    back = defaultdict(lambda: -1)
-    pq = []
+    pairs, pq = {'A': 'U', 'U': 'AG', 'C': 'G', 'G': 'CU'}, []
+    best, back, n = defaultdict(int), defaultdict(lambda: -1), len(rna)
 
-    
+    def find_kbest(start: int, end: int, k: int):
+        if start >= end:
+            return
 
-    return None
+        if k == 0:
+            return
+
+        max_pairs = best[(start, end)]
+
+        if max_pairs == k:
+            structure = ['.'] * n
+            fill_structure(start, end, structure, back, best)
+            structure_string = ''.join(structure)
+            heapq.heappush(pq, (-max_pairs, structure_string))
+
+        for k in range(start, end):
+            pairs_count = best[(start, k)] + best[(k + 1, end)]
+
+            if pairs_count >= k:
+                find_kbest(start, k, k - best[(k + 1, end)])
+                find_kbest(k + 1, end, k - best[(start, k)])
+
+    for length in range(1, n):
+        for i in range(n - length):
+            j = i + length
+            max_pairs = best[(i, j)]
+
+            if rna[i] in pairs[rna[j]]:
+                max_pairs = max(max_pairs, best[(i + 1, j - 1)] + 1)
+
+            for k in range(i, j):
+                pairs_count = best[(i, k)] + best[(k + 1, j)]
+                if pairs_count > max_pairs:
+                    max_pairs = pairs_count
+                    back[(i, j)] = k
+
+            best[(i, j)] = max_pairs
+
+    find_kbest(0, n - 1, k)
+    kbest_structures = heapq.nsmallest(min(k, len(pq)), pq)
+
+    return [(-pairs, structure) for pairs, structure in kbest_structures]
 
 if __name__ == '__main__': 
     # Test cases
